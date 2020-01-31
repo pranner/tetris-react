@@ -7,9 +7,10 @@
  ## Getting Started
  
 Open up the command line or terminal and run the following:
-``` cd tetris-react
-npm start``` 
-
+``` 
+cd tetris-react
+npm start 
+``` 
 
  ## Running the Test suites
  Coming soon!
