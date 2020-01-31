@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createStage } from '../gameHelper';
+import { createStage, checkCollision } from '../gameHelper';
 
 import { StyledTetris, StyledTetrisWrapper } from './styles/StyledTetris';
 
@@ -19,8 +19,10 @@ const Tetris = () => {
 
   console.log('YEEHAW');
 
-  const movePlayer = dir => {
-    updatePlayerPos({ x: dir, y: 0 });
+  const movePlayerHorizontal = dir => {
+    if (!checkCollision(player, stage, { x: dir, y: 0 })) {
+      updatePlayerPos({ x: dir, y: 0 });
+    }
 
   }
 
@@ -28,11 +30,21 @@ const Tetris = () => {
     //Reset Game
     setStage(createStage());
     resetPlayer();
+    setGameOver(false);
   }
 
   const drop = () => {
-    updatePlayerPos({ x: 0, y: 1, collided: false })
-
+    if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+      updatePlayerPos({ x: 0, y: 1, collided: false })
+    } else {
+      //Game Over
+      if (player.pos.y < 1) {
+        console.log("OVER!");
+        setGameOver(true);
+        setDropTime(null);
+      }
+      updatePlayerPos({ x: 0, y: 0, collided: true });
+    }
   }
 
   const dropPlayer = () => {
@@ -42,9 +54,9 @@ const Tetris = () => {
   const move = ({ keystroke }) => {
     if !(gameOver) {
       if (keystroke === 37) { //left arrow on keyboard
-        movePlayer(-1);
+        movePlayerHorizontal(-1);
       } else if (keystroke === 39) { //right arrow on keyboard
-        movePlayer(1)
+        movePlayerHorizontal(1)
       } else if (keystroke === 40) { //down arrow on keyboard
         dropPlayer();
       }

@@ -22,10 +22,14 @@ export const useStage = (player, resetPlayer) => {
           }
         });
       });
+      // Then check if we colided
+      if (player.colided) {
+        resetPlayer();
+      }
       return newStage;
     };
 
     setStage(prev => updateStage(prev))
-  }, [player]);
+  }, [player, resetPlayer]); //Dependencies
   return [stage, useStage];
 }
