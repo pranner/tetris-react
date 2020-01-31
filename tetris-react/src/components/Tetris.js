@@ -65,7 +65,7 @@ const Tetris = () => {
                 <Display text="Level" />
               </div>
             )}
-          <StartButton onclick={StartGame} />
+          <StartButton callback={StartGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
