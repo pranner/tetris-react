@@ -3,6 +3,7 @@ import { createStage } from '../gameHelper';
 
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
+
   useEffect(() => {
     const updateStage = prevStage => {
       // Have to clear stage before updating
@@ -31,5 +32,5 @@ export const useStage = (player, resetPlayer) => {
 
     setStage(prev => updateStage(prev))
   }, [player, resetPlayer]); //Dependencies
-  return [stage, useStage];
+  return [stage, setStage];
 }

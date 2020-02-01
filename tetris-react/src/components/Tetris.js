@@ -15,18 +15,18 @@ const Tetris = () => {
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPos, resetPlayer] = usePlayer();
-  const [stage, setStage] = useStage(player);
+  const [stage, setStage] = useStage(player, resetPlayer);
 
-  console.log('YEEHAW');
+  console.log('Re-Render YEEHAW');
 
   const movePlayerHorizontal = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
       updatePlayerPos({ x: dir, y: 0 });
     }
-
   }
 
-  const StartGame = () => {
+  const startGame = () => {
+    console.log("start our game yo");
     //Reset Game
     setStage(createStage());
     resetPlayer();
@@ -39,7 +39,7 @@ const Tetris = () => {
     } else {
       //Game Over
       if (player.pos.y < 1) {
-        console.log("OVER!");
+        console.log("Game OVER!");
         setGameOver(true);
         setDropTime(null);
       }
@@ -51,13 +51,14 @@ const Tetris = () => {
     drop();
   }
 
-  const move = ({ keystroke }) => {
-    if !(gameOver) {
-      if (keystroke === 37) { //left arrow on keyboard
+  const move = ({ keyStroke }) => {
+    console.log(keyStroke);
+    if (!gameOver) {
+      if (keyStroke === 37) { //left arrow on keyboard
         movePlayerHorizontal(-1);
-      } else if (keystroke === 39) { //right arrow on keyboard
+      } else if (keyStroke === 39) { //right arrow on keyboard
         movePlayerHorizontal(1)
-      } else if (keystroke === 40) { //down arrow on keyboard
+      } else if (keyStroke === 40) { //down arrow on keyboard
         dropPlayer();
       }
     }
@@ -77,7 +78,7 @@ const Tetris = () => {
                 <Display text="Level" />
               </div>
             )}
-          <StartButton callback={StartGame} />
+          <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
