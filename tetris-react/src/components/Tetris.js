@@ -51,14 +51,13 @@ const Tetris = () => {
     drop();
   }
 
-  const move = ({ keyStroke }) => {
-    console.log(keyStroke);
+  const move = ({ keyCode }) => {
     if (!gameOver) {
-      if (keyStroke === 37) { //left arrow on keyboard
+      if (keyCode === 37) { //left arrow on keyboard
         movePlayerHorizontal(-1);
-      } else if (keyStroke === 39) { //right arrow on keyboard
+      } else if (keyCode === 39) { //right arrow on keyboard
         movePlayerHorizontal(1)
-      } else if (keyStroke === 40) { //down arrow on keyboard
+      } else if (keyCode === 40) { //down arrow on keyboard
         dropPlayer();
       }
     }
