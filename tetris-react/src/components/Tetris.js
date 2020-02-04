@@ -14,7 +14,7 @@ const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const [player, updatePlayerPos, resetPlayer] = usePlayer();
+  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   const [stage, setStage] = useStage(player, resetPlayer);
 
   console.log('Re-Render YEEHAW');
@@ -59,6 +59,8 @@ const Tetris = () => {
         movePlayerHorizontal(1)
       } else if (keyCode === 40) { //down arrow on keyboard
         dropPlayer();
+      } else if (keyCode === 38) { //up arrow on keyboard
+        playerRotate(stage, 1);
       }
     }
   }
