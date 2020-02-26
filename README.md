@@ -11,7 +11,7 @@ Open up the command line or terminal and run the following:
 cd tetris-react
 npm start 
 ``` 
-
+The application is now running on `http://localhost:3000/`
  ## Running the Test suites
  Coming soon!
 
