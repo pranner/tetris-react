@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
+test('renders tetris with start game button', () => {
+  render(<App />);
+  screen.debug();
+  const linkElement = screen.getByText("Start Game");
   expect(linkElement).toBeInTheDocument();
 });
